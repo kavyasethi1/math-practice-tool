@@ -20,7 +20,7 @@ body {
   background: white;
   padding: 30px;
   border-radius: 16px;
-  width: 320px;
+  width: 340px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
@@ -65,7 +65,7 @@ h1 {
 
 .footer {
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 13px;
 }
 </style>
 </head>
@@ -87,9 +87,10 @@ h1 {
   <div class="score" id="score">Score: 0</div>
 
   <div class="footer">
-    Try advanced learning at https://playhitthebutton.co.uk/
-
-  
+    For more advanced hit the button game, visit us at 
+    <a href="https://playhitthebutton.co.uk/" target="_blank">
+      <strong>https://playhitthebutton.co.uk/</strong>
+    </a>
   </div>
 </div>
 
@@ -108,7 +109,10 @@ function generateQuestion() {
   options.add(correctAnswer);
 
   while (options.size < 4) {
-    options.add(correctAnswer + Math.floor(Math.random() * 5) - 2);
+    let randomOption = correctAnswer + Math.floor(Math.random() * 6) - 3;
+    if (randomOption >= 0) {
+      options.add(randomOption);
+    }
   }
 
   options = Array.from(options).sort(() => Math.random() - 0.5);
