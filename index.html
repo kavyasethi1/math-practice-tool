@@ -1,47 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Math Practice Tool</title>
-  <style>
-    body { font-family: Arial; text-align: center; padding: 40px; }
-    button { padding: 10px 20px; font-size: 16px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Practice Tool</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.question {
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  background: #4facfe;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00c6ff;
+}
+
+.result {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.score {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Quick Math Practice Tool</h1>
-<p>Solve this question:</p>
+<div class="container">
+  <h1>Math Practice</h1>
+  <p>Answer quickly and improve your skills 🚀</p>
 
-<h2 id="question"></h2>
+  <div class="question" id="question"></div>
 
-<button onclick="checkAnswer(1)">Option 1</button>
-<button onclick="checkAnswer(2)">Option 2</button>
+  <button class="btn" onclick="checkAnswer(0)" id="btn0"></button>
+  <button class="btn" onclick="checkAnswer(1)" id="btn1"></button>
+  <button class="btn" onclick="checkAnswer(2)" id="btn2"></button>
+  <button class="btn" onclick="checkAnswer(3)" id="btn3"></button>
 
-<p id="result"></p>
+  <div class="result" id="result"></div>
+  <div class="score" id="score">Score: 0</div>
+
+  <div class="footer">
+    Try advanced learning: 
+    <a href="https://playhitthebutton.co.uk/" target="_blank">
+      Hit the Button Game
+    </a>
+  </div>
+</div>
 
 <script>
-let num1 = Math.floor(Math.random() * 10);
-let num2 = Math.floor(Math.random() * 10);
-let correct = num1 + num2;
+let correctAnswer;
+let score = 0;
 
-document.getElementById("question").innerText = num1 + " + " + num2;
+function generateQuestion() {
+  let num1 = Math.floor(Math.random() * 10);
+  let num2 = Math.floor(Math.random() * 10);
 
-function checkAnswer(option) {
-  let answer = option === 1 ? correct : correct + 1;
-  if(answer === correct){
-    document.getElementById("result").innerText = "Correct!";
-  } else {
-    document.getElementById("result").innerText = "Try again!";
+  correctAnswer = num1 + num2;
+  document.getElementById("question").innerText = `${num1} + ${num2} = ?`;
+
+  let options = new Set();
+  options.add(correctAnswer);
+
+  while (options.size < 4) {
+    options.add(correctAnswer + Math.floor(Math.random() * 5) - 2);
   }
+
+  options = Array.from(options).sort(() => Math.random() - 0.5);
+
+  options.forEach((opt, i) => {
+    document.getElementById("btn" + i).innerText = opt;
+  });
 }
+
+function checkAnswer(index) {
+  let selected = document.getElementById("btn" + index).innerText;
+
+  if (parseInt(selected) === correctAnswer) {
+    document.getElementById("result").innerText = "✅ Correct!";
+    score++;
+  } else {
+    document.getElementById("result").innerText = "❌ Wrong!";
+  }
+
+  document.getElementById("score").innerText = "Score: " + score;
+
+  setTimeout(() => {
+    document.getElementById("result").innerText = "";
+    generateQuestion();
+  }, 800);
+}
+
+generateQuestion();
 </script>
-
-<hr>
-
-<p>
-For more advanced practice, try 
-<a href="https://playhitthebutton.co.uk/">Hit the Button maths game</a>
-</p>
 
 </body>
 </html>
