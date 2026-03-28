@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Practice Tool</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 40px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<h1>Quick Math Practice Tool</h1>
+<p>Solve this question:</p>
+
+<h2 id="question"></h2>
+
+<button onclick="checkAnswer(1)">Option 1</button>
+<button onclick="checkAnswer(2)">Option 2</button>
+
+<p id="result"></p>
+
+<script>
+let num1 = Math.floor(Math.random() * 10);
+let num2 = Math.floor(Math.random() * 10);
+let correct = num1 + num2;
+
+document.getElementById("question").innerText = num1 + " + " + num2;
+
+function checkAnswer(option) {
+  let answer = option === 1 ? correct : correct + 1;
+  if(answer === correct){
+    document.getElementById("result").innerText = "Correct!";
+  } else {
+    document.getElementById("result").innerText = "Try again!";
+  }
+}
+</script>
+
+<hr>
+
+<p>
+For more advanced practice, try 
+<a href="https://playhitthebutton.co.uk/">Hit the Button maths game</a>
+</p>
+
+</body>
+</html>
