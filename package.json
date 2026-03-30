@@ -1,0 +1,25 @@
+{
+  "name": "math-practice-tool",
+  "version": "1.0.0",
+  "description": "A simple math practice tool with Vercel Speed Insights",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
+    "dev": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavyasethi1/math-practice-tool.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kavyasethi1/math-practice-tool/issues"
+  },
+  "homepage": "https://github.com/kavyasethi1/math-practice-tool#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
